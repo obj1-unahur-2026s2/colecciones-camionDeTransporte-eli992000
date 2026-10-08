@@ -10,7 +10,7 @@ object bumblebee{
   method peso() = 800
   method nivelDePeligrosidad() = if (estaComoAuto) 15 else 30 
 }
-object PaqueteDeLadrillos{
+object paqueteDeLadrillos{
   var cantLadrillos = 0
 
   method modificarCantidadLadrillos(nuevaCant){ cantLadrillos = nuevaCant}
@@ -32,10 +32,10 @@ object bateriaAntiaerea{
   method nivelDePeligrosidad() = if (estaConMisiles) 100 else 0
 }
 object contenedorPortuario{
-  var cosasAdentro = []
+  const cosasAdentro = []
 
   method sumarCosas(otraCosa){cosasAdentro.add(otraCosa)}
-  method peso() = cosasAdentro.sum() + 100
+  method peso() = cosasAdentro.sum({c => c.peso()}) + 100
   method nivelDePeligrosidad() = if (cosasAdentro.isEmpty()) 0 else cosasAdentro.find({c => c.nivelDePeligrosidad().max()})
 }
 object residuosRadioactivos{
