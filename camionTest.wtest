@@ -11,9 +11,31 @@ describe "test para camion, se cargará al camión con bumblebee como robot, are
   camion.cargarCamionCon(bateriaAntiaerea)
   paqueteDeLadrillos.modificarCantidadLadrillos(80)
   embalajeDeSeguridad.cambiarCosaAdentro(paqueteDeLadrillos)
+  camion.cargarCamionCon(embalajeDeSeguridad)
  }
-  test "first test" {
-    assert.that(true)
+  test "peso Total del camion como esta en el metodo initialize" {
+    assert.equals(2410, camion.pesoTotal())
   }
+  test " hay una cosa que pese igual a un valor dado por parametro"{
+    assert.that(camion.hayUnaCosaQuePese(800))
+  }
+  test "saber si las cosas cargadas en el camion son numeros pares"{
+    assert.that(camion.losPesosSonPares())
+  }
+  test " devuelve la primer cosa el nivel de peligrosidad pasado por parametro, que encuentre cargada en el camion"{
+    assert.equals(bateriaAntiaerea, camion.cosaConNivelDePeligrosidad(100))
+  }
+  test " devuelve la o las cosas que superen un valor de peligrosidad dado por parametro" {
+  assert.equals([bumblebee, bateriaAntiaerea, embalajeDeSeguridad], camion.cosasConMasNivelQue(29))
+  }
+  test " responde false si el camion no esta exedido del peso maximo permitido (2500) "{
+  assert.notThat(camion.estaExedido())
+  }
+  test " devuelve la cosa que pese entre los valores que se pasan por parametro"{
+    assert.equals([bumblebee], camion.tieneAlgoQuePeseEntre(700, 900))
+  }
+  test " devuelve el objeto mas pesado del camion"{
+    assert.equals(bumblebee, camion.laCosaMasPesada())
 
+  }
 }
